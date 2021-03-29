@@ -1,6 +1,5 @@
-
-// JAK COS TO SLAWKOWY KOD NIE  SERIO?? SERIO???? SERIOO???????????????????BEDZIE TUTAJ DZIALAL BO NIE MA XAMPA SKALA OBCHOXXXDDXDYDXDXD = 100000000
 <?php
+// JAK COS TO SLAWKOWY KOD NIE  SERIO?? SERIO???? SERIOO???????????????????BEDZIE TUTAJ DZIALAL BO NIE MA XAMPA SKALA OBCHOXXXDDXDYDXDXD = 100000000
 $db = mysqli_connect("localhost", "root", "", "slawkowabaza");
     if(isset($_POST['rejestracja'])){
         $email = $_POST['email'];
@@ -29,10 +28,10 @@ $db = mysqli_connect("localhost", "root", "", "slawkowabaza");
         $password = md5($password);
 
         $q3 = "SELECT * FROM `users` WHERE `email` LIKE '$email' AND `password` LIKE '$password'";
-        $r3 = mysqli_query($db);
+        $r3 = mysqli_query($db,$q3);
         $row3 = mysqli_num_rows($r3);
-      	$id = mysqli_fetch_row($r3);
         if($row3 == 1){
+            $id = mysqli_fetch_row($r3);
             $date = date('Y-m-d');
             $q4 = "UPDATE `users` SET `last_login`='$date' WHERE `id`='$id[0]'";
             mysqli_query($db, $q4);
