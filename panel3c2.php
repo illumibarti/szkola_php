@@ -79,7 +79,20 @@
 <?php
         }
         if($row[5]==3) { //moderator
-
+            $q5 = "SELECT `id`, `email`, `id_profile` FROM `users` WHERE `id_profile`<3";
+            $r5 = mysqli_query($db, $q5);
+            echo '<table>';
+            while($row5=mysqli_fetch_row($r5)) {
+                $q6 = "SELECT `funkcja` FROM `profile` WHERE `id`=$row5[2]";
+                $r6 = mysqli_query($db,$q6);
+                $row6 = mysqli_fetch_row($r6);
+                echo '<tr>
+                    <td>'.$row5[1].'</td>
+                    <td>'.$row6[0].'</td>
+                    <td><a href="?zmien='.$row5[0].'">zmien</a></td>
+                <tr>';
+            }
+            echo '</table>';
         }
 
         mysqli_close($db);  
