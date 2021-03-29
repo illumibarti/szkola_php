@@ -19,7 +19,7 @@
                 $row2 = mysqli_num_rows($r2);
                 if($row2 == 1) {
                     $newpass = md5($newpass1);
-                    $q3 = "UPDATE `users` SET `password`='$newpass1' WHERE `id`='$id'";
+                    $q3 = "UPDATE `users` SET `password`='$newpass1' WHERE `id`=$id";
                     if(mysqli_query($db,$q2)) echo '<h1>Haslo zostalo zmienione</h1>';
                 } else echo "<h1>bledne haslo</h1>";
             } else echo "<h1>Nowe hasla nie zgadzaja sie</h1>";
@@ -47,7 +47,23 @@
 <?php
         }
         if($row[5]==1) { //nauczyciel
-
+?>
+        <h2>Zmiana hasla</h2>
+        <form action="" method="post">
+            <input type="password" name="lastpass" id="">
+            <br>
+            <input type="password" name="newpass1" id="">
+            <input type="password" name="newpass2" id="">
+            <input type="submit" value="Zmien haslo" name="zmien_haslo">
+        </form>
+        <h2>Zmiana adresu email</h2>
+        <form action="" method="post">
+            <input type="email" name="lastemail" id="" value="<?php echo $row[1]; ?>" disabled><br>
+            <input type="email" name="newemail1" id="">
+            <input type="email" name="newemail2" id="">
+            <input type="submit" value="Zmien email" name="zmien_email">
+        </form> 
+<?php
         }
         if($row[5]==3) { //moderator
 
