@@ -33,9 +33,12 @@ $db = mysqli_connect("localhost", "root", "", "slawkowabaza");
         $row3 = mysqli_num_rows($r3);
       	$id = mysqli_fetch_row($r3);
         if($row3 == 1){
-          session_start();
-          $_SESSION['id'] = $id[0];
-          header("Location: http://localhost/panel3c2.php",5);
+            $date = date('Y-m-d');
+            $q4 = "UPDATE `users` SET `last_login`='$date' WHERE `id`='$id[0]'";
+            mysqli_query($db, $q4);
+            session_start();
+            $_SESSION['id'] = $id[0];
+            header("Location: http://localhost/panel3c2.php",5);
         }else{
             echo '<h1>zle haslo albo email</h1>';
         }
