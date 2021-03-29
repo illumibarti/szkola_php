@@ -4,9 +4,6 @@
         $db = mysqli_connect("localhost", "root", "", "slawkowabaza");
 
         $id = $_SESSION['id'];
-        $q1 = "SELECT * FROM `users` WHERE `id`=$id";
-        $r1 = mysqli_query($db, $q1);
-        $row1 = mysqli_fetch_row($r1);
 
         if(isset($_POST['zmien_haslo'])) {
             $lastpass = $_POST['lastpass'];
@@ -24,7 +21,23 @@
                 } else echo "<h1>bledne haslo</h1>";
             } else echo "<h1>Nowe hasla nie zgadzaja sie</h1>";
         }
+
+        if(isset($_POST['zmien_email'])) {
+            $newemail1 = $_POST['newemail1'];
+            $newemail2 = $_POST['newemail2'];
+            if($newemail1 == $newemail2) {
+                $q4 = "UPDATE `users` SET `email`='$newemail1' WHERE `id`=$id";
+                if(mysqli_query($db,$q4)) echo "<h1>email zmieniony prawidlowo</h1>";
+                else "<h1>blad bazy danych</h1>";
+            } else echo "<h1>Nowe emaile nie zostaly powtorzone prawidlowo";
+        } 
+
+    $q1 = "SELECT * FROM `users` WHERE `id`=$id";
+    $r1 = mysqli_query($db, $q1);
+    $row1 = mysqli_fetch_row($r1);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
